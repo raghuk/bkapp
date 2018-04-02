@@ -35,7 +35,7 @@ class SearchForm extends Component {
     }
 
     _onSelectSuccess = async (tx, results) => {
-        let states = concat([{"id": 0,"state": "", "cities": []}], results.rows._array);
+        let states = concat([{"id": 0, "state": "", "cities": []}], results.rows._array);
 
         this.setState({isReady: true, states: states});
     }

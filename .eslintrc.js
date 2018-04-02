@@ -43,7 +43,7 @@ module.exports = {
         'eol-last': WARNING,
         'guard-for-in': WARNING,
         'key-spacing': [WARNING, { 'beforeColon': false, 'afterColon': true }],
-        'max-len': [WARNING, { 'code': 220, 'tabWidth': 4, 'ignoreComments': true, 'ignoreTrailingComments': true, 'ignoreUrls': true }],
+        'max-len': [WARNING, { 'code': 420, 'tabWidth': 4, 'ignoreComments': true, 'ignoreTrailingComments': true, 'ignoreUrls': true }],
         'new-cap': [WARNING, { newIsCap: true, capIsNew: false }],
         'new-parens': WARNING,
         'no-array-constructor': WARNING,

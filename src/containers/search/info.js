@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {MapView} from 'expo';
-import {isEmpty, join, compact} from 'lodash';
+import {isEmpty} from 'lodash';
 
 import {View, Text, Share, Dimensions} from 'react-native';
 import {Button} from 'react-native-elements';
 
 import styles from './styles';
 
-const deviceWidth = Dimensions.get('window').width;
+// const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 
 

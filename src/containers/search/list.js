@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {SQLite} from 'expo';
 import {isEmpty, join, filter, lowerCase, orderBy, toString, toNumber, trim, compact} from 'lodash';
 
-import {View, ScrollView, ActivityIndicator, FlatList, Text, Share} from 'react-native';
+import {View, ScrollView, ActivityIndicator, FlatList, Text} from 'react-native';
 import {ListItem, SearchBar} from 'react-native-elements';
 
 import styles from './styles';

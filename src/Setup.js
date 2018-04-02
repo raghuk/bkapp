@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
-import {Notifications, SQLite} from 'expo';
-import {join, isEmpty, replace, map, trim} from 'lodash';
+import {Constants, Notifications, SQLite} from 'expo';
+import {isEmpty, replace, map, trim} from 'lodash';
 
-import {Platform, StatusBar, SafeAreaView, ActivityIndicator, ImageBackground, Text} from 'react-native';
+import {StatusBar, SafeAreaView, ActivityIndicator, ImageBackground} from 'react-native';
 
+import {firebaseApp} from './config';
+import registerForPN from './helpers/registerForPN';
 import MainNavigator from './Navigator';
+
 import locations from '../data/locations.json';
 
 const db = SQLite.openDatabase('bkapp.db');
@@ -15,7 +18,8 @@ class Setup extends Component {
         super(props);
 
         this.state = {
-            isReady: false
+            isReady: false,
+            notification: {}
         };
     }
 
@@ -26,6 +30,35 @@ class Setup extends Component {
             tx.executeSql('DROP TABLE IF EXISTS centers;');
             tx.executeSql(query, null, this._onCreateSuccess, (tx, err) => console.log('error creating table: ', err));
         }, err => console.log('error creating transaction ', err));
+
+        this._registerDevice();
+    }
+
+    componentDidMount() {
+        Notifications.addListener(this._handleNotification);
+    }
+
+    componentWillUnmount() {
+        Notifications.removeListener(this._handleNotification);
+    }
+
+    _registerDevice = () => {
+        console.log('_registerDevice');
+
+        let email = `${Constants.deviceId}@bkapp.com`;
+        let password = 'karankaravanharkarrahehain';
+
+        firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(() => {
+            console.log('User creation success');
+            firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
+                console.log('User signed in successfully');
+                registerForPN();
+            }).catch((err) => { console.log('Authentication failed', err); })
+        }).catch((err) => { console.log('User creation failed', err); });
+    }
+
+    _handleNotification = ({origin, data}) => {
+        console.log('notification: ', origin, data);
     }
 
     _onCreateSuccess = async () => {
@@ -36,10 +69,10 @@ class Setup extends Component {
             let addr2 = c.address.line2;
             let addr3 = c.address.line3;
 
-            // addr1 = isEmpty(addr1) ? '' : trim(replace(addr1, /["']/gi, ''));
-            // addr2 = isEmpty(addr2) ? '' : trim(replace(addr2, /["']/gi, ''));
-            // addr3 = isEmpty(addr3) ? '' : trim(replace(addr3, /["']/gi, ''));
-            
+            addr1 = isEmpty(addr1) ? '' : trim(replace(addr1, /["']/gi, ''));
+            addr2 = isEmpty(addr2) ? '' : trim(replace(addr2, /["']/gi, ''));
+            addr3 = isEmpty(addr3) ? '' : trim(replace(addr3, /["']/gi, ''));
+
             c.name = trim(c.name);
             c.address.city = trim(c.address.city);
             c.contact = isEmpty(c.contact) ? '' : trim(replace(c.contact, /-/gi, ''));

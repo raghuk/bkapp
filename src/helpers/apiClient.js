@@ -1,5 +1,5 @@
 import superagent from 'superagent';
-import config from '../config';
+import {api} from '../config';
 
 const TIMEOUT = 10000;
 const methods = ['get', 'post', 'put', 'patch', 'del'];
@@ -38,7 +38,7 @@ class ApiClient {
     formatUrl(path) {
         let adjustedPath = (path[0] !== '/') ? '/' + path : path;
 
-        return 'http://'+ config.apiHost + config.apiVersion + adjustedPath;
+        return 'http://'+ api.host + api.version + adjustedPath;
     }
 }
 
