@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "980028222161",
+    "firebase_url": "https://bk-app-1cf1c.firebaseio.com",
+    "project_id": "bk-app-1cf1c",
+    "storage_bucket": "bk-app-1cf1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980028222161:android:d0af13aa0a0e62b6",
+        "android_client_info": {
+          "package_name": "com.brahmakumaris.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980028222161-mbr6q55bohuimdu6sfu9q7kljthjlsi4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaSXg2OvOa_jknsb8YZ1mdTb46kIKj4sk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

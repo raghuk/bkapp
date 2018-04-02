@@ -1,0 +1,46 @@
+{
+    "expo": {
+        "name": "Brahma Kumaris",
+        "description": "Brahma Kumaris mobile app brings wide range of features related to Meditation, News, Articles, Events, Live updates, etc.",
+        "slug": "brahma-kumaris-app",
+        "privacy": "public",
+        "sdkVersion": "26.0.0",
+        "version": "1.0.2",
+        "platforms": ["ios", "android"],
+        "orientation": "portrait",
+        "primaryColor": "#e8ded3",
+        "icon": "./assets/icons/app-icon.png",
+        "splash": {
+            "image": "./assets/images/splash.png",
+            "resizeMode": "cover",
+            "backgroundColor": "#ffffff"
+        },
+        "notification": {
+            "icon": "./assets/icons/notification-icon.png",
+            "color": "#000000"
+        },
+        "androidStatusBar": {
+            "barStyle": "dark-content"
+        },
+        "assetBundlePatterns": ["./assets/images/*", "./assets/fonts/*"],
+        "packagerOpts": {
+            "assetExts": ["ttf", "mp4"]
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "android": {
+            "package": "com.brahmakumaris.app",
+            "googleServicesFile": "./google-services.json",
+            "config": {
+                "googleMaps": {
+                    "apiKey": "AIzaSyAZUad5jBTl_kicp0YgqagjR0NU-V5Y34I"
+                }
+            }
+        },
+        "ios": {
+            "bundleIdentifier": "com.brahmakumaris.app",
+            "supportsTablet": true
+        }
+    }
+}
