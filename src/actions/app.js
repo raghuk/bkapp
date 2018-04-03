@@ -18,3 +18,10 @@ export function appReset() {
         type: types.APP_RESET
     };
 }
+
+export function connectionState(connectionInfo) {
+    return {
+        type: types.SET_CONNECTION_STATUS,
+        connectionInfo
+    };
+}

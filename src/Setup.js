@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {Constants, Notifications, SQLite} from 'expo';
 import {isEmpty, replace, map, trim} from 'lodash';
 
-import {StatusBar, SafeAreaView, ActivityIndicator, ImageBackground} from 'react-native';
+import {StatusBar, SafeAreaView, ActivityIndicator, ImageBackground, NetInfo} from 'react-native';
 
 import {firebaseApp} from './config';
 import registerForPN from './helpers/registerForPN';
 import MainNavigator from './Navigator';
 
+import {connectionState} from './actions/app';
 import locations from '../data/locations.json';
 
 const db = SQLite.openDatabase('bkapp.db');
@@ -18,8 +20,7 @@ class Setup extends Component {
         super(props);
 
         this.state = {
-            isReady: false,
-            notification: {}
+            isReady: false
         };
     }
 
@@ -30,35 +31,48 @@ class Setup extends Component {
             tx.executeSql('DROP TABLE IF EXISTS centers;');
             tx.executeSql(query, null, this._onCreateSuccess, (tx, err) => console.log('error creating table: ', err));
         }, err => console.log('error creating transaction ', err));
-
-        this._registerDevice();
     }
 
     componentDidMount() {
+        NetInfo.addEventListener('connectionChange', this._handleConnectionChange);
         Notifications.addListener(this._handleNotification);
+
+        NetInfo.isConnected.fetch().then(isConnected => {
+            return isConnected ? this._registerDeviceForPN() : true;
+        }).catch((err) => { });
     }
 
     componentWillUnmount() {
+        NetInfo.removeEventListener('connectionChange', this._handleConnectionChange);
         Notifications.removeListener(this._handleNotification);
     }
 
-    _registerDevice = () => {
-        console.log('_registerDevice');
+    _handleConnectionChange = (connectionInfo) => {
+        this.props.connectionState(connectionInfo);
+    }
 
+    _registerDeviceForPN = () => {
         let email = `${Constants.deviceId}@bkapp.com`;
-        let password = 'karankaravanharkarrahehain';
+        let password = 'karankaravanharkarrahehai108';
 
         firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(() => {
             console.log('User creation success');
-            firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
+            return firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
                 console.log('User signed in successfully');
-                registerForPN();
+                return registerForPN();
             }).catch((err) => { console.log('Authentication failed', err); })
-        }).catch((err) => { console.log('User creation failed', err); });
+        }).catch((err) => {
+            console.log('User creation failed, checking for email already in use', err);
+            if (err.code === 'auth/email-already-in-use') {
+                firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
+                    console.log('User signed in successfully');
+                    return registerForPN();
+                }).catch((err) => { console.log('Authentication failed again', err); })
+            }
+        });
     }
 
-    _handleNotification = ({origin, data}) => {
-        console.log('notification: ', origin, data);
+    _handleNotification = (notification) => {
     }
 
     _onCreateSuccess = async () => {
@@ -108,4 +122,10 @@ class Setup extends Component {
 }
 
 
-export default Setup;
+function bindAction(dispatch) {
+    return {
+        connectionState: connectionInfo => dispatch(connectionState(connectionInfo))
+    };
+}
+
+export default connect(null, bindAction)(Setup);
