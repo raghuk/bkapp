@@ -1,50 +1,99 @@
 import React from 'react';
 import {StackNavigator, DrawerNavigator} from 'react-navigation';
 
-import {Dimensions, View} from 'react-native';
+import {Dimensions, View, ImageBackground} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 
 import Sidebar from './components/sidebar';
-import Contact from './containers/contact';
+import {About} from './containers/info';
+import {Info, Steps} from './containers/meditation';
 import {SearchForm, SearchInfo, SearchList} from './containers/search';
+
 
 const deviceWidth = Dimensions.get('window').width;
 
-
-const SearchTab = StackNavigator({
-    SearchForm: {
-        screen: SearchForm,
+const MeditationTab = StackNavigator({
+    Info: {
+        screen: Info,
         path: '/',
         navigationOptions: ({ navigation }) => ({
-            title: 'Branch Locator',
-            headerTintColor: '#f9f9fc',
+            title: 'Raja Yoga Meditation',
+            // headerTransparent: true,
+            headerBackground: <ImageBackground imageStyle={{resizeMode: 'cover'}} style={{flex: 1}} source={require('../assets/images/statusbar.png')} />,
+            headerTintColor: '#f9f9f9',
             headerLeft: (
                 <Button
                     title=''
                     large={true}
-                    buttonStyle={{backgroundColor: '#706993', padding: 4}}
+                    buttonStyle={{backgroundColor: 'transparent', padding: 3}}
                     icon={{name: 'md-menu', type: 'ionicon', color: '#fdfdfd'}}
                     onPress={() => navigation.navigate('DrawerOpen')} />
             ),
             headerStyle: {
-                backgroundColor: '#706993'
+                backgroundColor: 'transparent'
             },
             headerTitleStyle: {
-                color: '#fdfdfd', fontSize: 20, marginHorizontal: 5
+                color: '#fdfdfd', fontSize: 20, fontWeight: 'normal', fontFamily: 'Opensans', marginHorizontal: 5
+            }
+        })
+    },
+    Steps: {
+        screen: Steps,
+        path: '/steps',
+        navigationOptions: ({ navigation }) => ({
+            title: 'How to Meditate',
+            // headerTransparent: true,
+            headerBackground: <ImageBackground imageStyle={{resizeMode: 'cover'}} style={{flex: 1}} source={require('../assets/images/statusbar.png')} />,
+            headerTintColor: '#f9f9f9',
+            headerStyle: {
+                backgroundColor: 'transparent'
+            },
+            headerTitleStyle: {
+                color: '#fdfdfd', fontSize: 20, fontWeight: 'normal', fontFamily: 'Opensans', marginHorizontal: 5
+            },
+            headerBackTitleStyle: {
+                color: '#fdfdfd'
+            }
+        })
+    }
+});
+
+const SearchTab = StackNavigator({
+    SearchForm: {
+        screen: SearchForm,
+        path: '/search',
+        navigationOptions: ({ navigation }) => ({
+            title: 'Branch Locator',
+            // headerTransparent: true,
+            headerBackground: <ImageBackground imageStyle={{resizeMode: 'cover'}} style={{flex: 1}} source={require('../assets/images/statusbar.png')} />,
+            headerTintColor: '#f9f9f9',
+            headerLeft: (
+                <Button
+                    title=''
+                    large={true}
+                    buttonStyle={{backgroundColor: 'transparent', padding: 3}}
+                    icon={{name: 'md-menu', type: 'ionicon', color: '#fdfdfd'}}
+                    onPress={() => navigation.navigate('DrawerOpen')} />
+            ),
+            headerStyle: {
+                backgroundColor: 'transparent'
+            },
+            headerTitleStyle: {
+                color: '#fdfdfd', fontSize: 20, fontWeight: 'normal', fontFamily: 'Opensans', marginHorizontal: 5
             }
         })
     },
     SearchList: {
         screen: SearchList,
-        path: '/search',
+        path: '/search/list',
         navigationOptions: ({ navigation }) => ({
             title: 'Branches List',
-            headerTintColor: '#f9f9fc',
+            headerTintColor: '#f9f9f9',
             headerStyle: {
                 backgroundColor: '#706993'
             },
             headerTitleStyle: {
-                color: '#fdfdfd', fontSize: 20, marginHorizontal: 5
+                color: '#fdfdfd', fontSize: 20, fontWeight: 'normal', fontFamily: 'Opensans', marginHorizontal: 5
             },
             headerBackTitleStyle: {
                 color: '#fdfdfd'
@@ -56,12 +105,12 @@ const SearchTab = StackNavigator({
         path: '/search/info',
         navigationOptions: ({ navigation }) => ({
             title: `${navigation.state.params.branch.name}`,
-            headerTintColor: '#f9f9fc',
+            headerTintColor: '#f9f9f9',
             headerStyle: {
                 backgroundColor: '#706993'
             },
             headerTitleStyle: {
-                color: '#fdfdfd', fontSize: 20, marginHorizontal: 5
+                color: '#fdfdfd', fontSize: 20, fontWeight: 'normal', fontFamily: 'Opensans', marginHorizontal: 5
             },
             headerBackTitleStyle: {
                 color: '#fdfdfd'
@@ -70,26 +119,28 @@ const SearchTab = StackNavigator({
     }
 });
 
-const ContactTab = StackNavigator({
+const AboutTab = StackNavigator({
     Contact: {
-        screen: Contact,
-        path: '/contact',
+        screen: About,
+        path: '/about',
         navigationOptions: ({ navigation }) => ({
-            title: 'Contact Us',
-            headerTintColor: '#f9f9fc',
+            title: 'About Us',
+            // headerTransparent: true,
+            headerBackground: <ImageBackground imageStyle={{resizeMode: 'cover'}} style={{flex: 1}} source={require('../assets/images/statusbar.png')} />,
+            headerTintColor: '#f9f9f9',
             headerLeft: (
                 <Button
                     title=''
                     large={true}
-                    buttonStyle={{backgroundColor: '#706993', padding: 4}}
+                    buttonStyle={{backgroundColor: 'transparent', padding: 3}}
                     icon={{name: 'md-menu', type: 'ionicon', color: '#fdfdfd'}}
                     onPress={() => navigation.navigate('DrawerOpen')} />
             ),
             headerStyle: {
-                backgroundColor: '#706993'
+                backgroundColor: 'transparent'
             },
             headerTitleStyle: {
-                color: '#fdfdfd', fontSize: 20, marginHorizontal: 5
+                color: '#fdfdfd', fontSize: 20, fontWeight: 'normal', fontFamily: 'Opensans', marginHorizontal: 5
             }
         })
     }
@@ -98,27 +149,35 @@ const ContactTab = StackNavigator({
 
 const MainNavigator = DrawerNavigator(
     {
-        SearchTab: {
-            screen: SearchTab,
+        MeditationTab: {
+            screen: MeditationTab,
             path: '/',
             navigationOptions: () => ({
-                drawerLabel: 'Branch Locator',
-                drawerIcon: <Icon name='md-search' type='ionicon' color='#333' />
+                drawerLabel: 'Meditation',
+                drawerIcon: <Icon name='ios-radio-outline' type='ionicon' color='#d72125' size={30} />
             })
         },
-        ContactTab: {
-            screen: ContactTab,
-            path: '/contact',
+        SearchTab: {
+            screen: SearchTab,
+            path: '/search',
             navigationOptions: () => ({
-                drawerLabel: 'Contact Us',
-                drawerIcon: <Icon name='md-information-circle' type='ionicon' color='#333' />
+                drawerLabel: 'Branch Locator',
+                drawerIcon: <Icon name='md-search' type='ionicon' color='#d72125' size={28} />
+            })
+        },
+        AboutTab: {
+            screen: AboutTab,
+            path: '/about',
+            navigationOptions: () => ({
+                drawerLabel: 'About Us',
+                drawerIcon: <Icon name='ios-ribbon-outline' type='ionicon' color='#d72125' size={28} />
             })
         }
     },
     {
         drawerWidth: deviceWidth * 0.82,
         drawerPosition: 'left',
-        initialRouteName: 'SearchTab',
+        initialRouteName: 'MeditationTab',
         contentComponent: (props) => <View style={{flex: 1}}><Sidebar {...props} /></View>,
         drawerBackgroundColor: '#fdfdfd'
     }

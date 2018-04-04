@@ -5,15 +5,17 @@ export default {
     },
     content: {
         flex: 1,
-        backgroundColor: '#e8ded3'
+        backgroundColor: '#f9f9f9'
     },
     searchContainer: {
-        backgroundColor: '#e8ded3',
+        backgroundColor: '#706993',
         borderTopColor: '#5c5679',
         borderBottomColor: '#7f2d2c'
     },
     searchInput: {
-        color: '#515151',
+        color: '#323c46',
+        fontSize: 16,
+        fontFamily: 'Titillium',
         backgroundColor: '#fdfdfd'
     },
     listItem: {
@@ -21,14 +23,15 @@ export default {
         borderBottomColor: '#7f2d2c'
     },
     notice: {
-        fontSize: 16,
+        color: '#323c46',
+        fontSize: 18,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 30
     },
     title: {
-        fontSize: 16,
-        fontFamily: 'Opensans',
+        fontSize: 18,
+        fontFamily: 'Titillium',
         textAlign: 'center'
     },
     searchView: {
@@ -36,24 +39,27 @@ export default {
         paddingTop: 15,
         paddingLeft: 20,
         paddingRight: 20,
-        backgroundColor: '#e8ded3'
+        backgroundColor: '#f9f9f9'
     },
     pickerView: {
         paddingLeft: 10,
         paddingRight: 10
     },
     picker: {
-        backgroundColor: '#f9f9fc'
+        color: '#323c46',
+        backgroundColor: '#e2e2e2'
     },
     label: {
-        fontSize: 14,
-        fontFamily: 'Opensans',
+        color: '#323c46',
+        fontSize: 16,
+        fontFamily: 'Titillium',
         marginTop: 25,
         marginBottom: 10
     },
     desc: {
+        color: '#323c46',
         fontSize: 16,
-        fontFamily: 'Opensans',
+        fontFamily: 'Titillium',
         marginTop: 5,
         padding: 15
     }

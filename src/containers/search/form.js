@@ -111,7 +111,7 @@ class SearchForm extends Component {
                             editable={this.state.editable}
                             autoCapitalize='none'
                             maxLength={24}
-                            style={{fontSize: 16, backgroundColor: '#f9f9fc', height: 50, padding: 10, marginBottom: 30}}
+                            style={{fontSize: 16, backgroundColor: '#e2e2e2', height: 50, padding: 10, marginBottom: 30}}
                             value={this.state.keywordValue}
                             placeholder='Enter keyword to refine search'
                             underlineColorAndroid='transparent'
@@ -120,12 +120,14 @@ class SearchForm extends Component {
                     <Button
                         raised={true}
                         large={true}
-                        containerViewStyle={{marginLeft: 0, marginRight: 0, backgroundColor: '#e8ded3'}}
-                        buttonStyle={{padding: 15}}
-                        backgroundColor='#5c5679'
+                        fontSize={18}
+                        fontFamily='Titillium'
+                        containerViewStyle={{marginLeft: 0, marginRight: 0}}
+                        buttonStyle={{padding: 15, elevation: 2}}
+                        backgroundColor='#384756'
                         title='Find Branch'
                         onPress={this._handleSearch} />
-                    <View style={{ height: 60 }} />
+                    <View style={{ height: 50 }} />
                 </ScrollView>
             </KeyboardAvoidingView>
         );

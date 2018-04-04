@@ -79,14 +79,14 @@ class SearchList extends Component {
                 key={item.id}
                 chevronColor='#5c5679'
                 containerStyle={styles.listItem}
-                fontFamily='Opensans'
+                fontFamily='Titillium'
                 hideChevron={false}
                 title={item.name}
                 titleNumberOfLines={1}
-                titleStyle={{fontSize: 16, marginLeft: 5}}
+                titleStyle={{fontSize: 18, marginLeft: 5}}
                 subtitle={item.address}
                 subtitleNumberOfLines={6}
-                subtitleStyle={{fontSize: 14, fontWeight: 'normal', color: '#5b5b5b', marginLeft: 5}}
+                subtitleStyle={{fontSize: 16, fontWeight: 'normal', color: '#5b5b5b', marginLeft: 5}}
                 onPress={() => this._viewBranchInfo(item)} />
         )
     }
@@ -115,7 +115,7 @@ class SearchList extends Component {
                     containerStyle={styles.searchContainer}
                     inputStyle={styles.searchInput}
                     onChangeText={this._filterList}
-                    placeholder='Filter below list by branch name/area/city...'
+                    placeholder='Filter below list by branch name/address'
                     ref={(search) => {this.search = search}} />
                 <ScrollView style={styles.content}>
                 {

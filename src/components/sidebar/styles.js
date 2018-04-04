@@ -28,7 +28,9 @@ export default {
         marginVertical: 10
     },
     label: {
-        fontSize: 16,
+        color: '#323c46',
+        fontSize: 18,
+        fontFamily: 'Titillium',
         fontWeight: 'normal',
         marginLeft: 0
     }

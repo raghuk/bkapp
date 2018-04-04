@@ -19,14 +19,19 @@ export default class App extends Component {
     }
 
     _loadAssetsAsync = async () => {
-        const fontAssets = this._cacheFonts([Ionicons.font, {'Opensans': require('./assets/fonts/Opensans.ttf') }]);
+        const fontAssets = this._cacheFonts([
+            Ionicons.font,
+            {'Opensans': require('./assets/fonts/Opensans.ttf') },
+            {'Titillium': require('./assets/fonts/Titillium.ttf') }
+        ]);
 
         const imageAssets = Asset.loadAsync([
             require('./assets/images/default-bg.png'),
             require('./assets/images/drawer-cover.png'),
             require('./assets/images/logo-cover.png'),
             require('./assets/images/pin.png'),
-            require('./assets/images/splash.png')
+            require('./assets/images/splash.png'),
+            require('./assets/images/statusbar.png')
         ]);
 
         await Promise.all([imageAssets, ...fontAssets]);

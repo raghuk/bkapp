@@ -1,23 +1,23 @@
 
 export default {
-    view: {
-        flex: 1
-    },
     content: {
+        flex: 1,
         padding: 15,
         backgroundColor: '#e8ded3'
     },
     title: {
-        fontSize: 16
+        fontSize: 18,
+        fontFamily: 'Titillium'
     },
     note: {
         color: '#2e78b7',
-        fontSize: 14,
+        fontSize: 16,
+        fontFamily: 'Titillium',
         marginBottom: 10
     },
     info: {
-        fontSize: 14,
-        fontFamily: 'Opensans',
+        fontSize: 16,
+        fontFamily: 'Titillium',
         marginBottom: 20
     }
 };

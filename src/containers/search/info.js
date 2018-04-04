@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {MapView} from 'expo';
 import {isEmpty} from 'lodash';
 
-import {View, Text, Share, Dimensions} from 'react-native';
+import {ScrollView, Text, Share, Dimensions} from 'react-native';
 import {Button} from 'react-native-elements';
 
 import styles from './styles';
@@ -53,7 +53,7 @@ class SearchInfo extends Component {
         let marker = {latitude: latitude, longitude: longitude};
 
         return (
-            <View style={styles.content}>
+            <ScrollView style={styles.content}>
                 <MapView
                     style={{alignSelf: 'stretch', height: deviceHeight / 2.2}}
                     minZoomLevel={3}
@@ -73,7 +73,7 @@ class SearchInfo extends Component {
                 </MapView>
                 { (latitude === 0) ? <Text style={[styles.desc, {color: '#f44242'}]}>We do not have Google Map information for this location. We will update soon.</Text> : null }
                 <Text style={styles.desc}>{`${branch.name}\n${address}\n\n`}</Text>
-            </View>
+            </ScrollView>
         );
     }
 }
