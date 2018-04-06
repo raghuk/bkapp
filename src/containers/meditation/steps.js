@@ -52,7 +52,7 @@ class Steps extends Component {
                     renderItem={this._renderItem}
                     sliderWidth={sliderWidth}
                     itemWidth={itemWidth}
-                    inactiveSlideScale={1}
+                    inactiveSlideScale={0.94}
                     inactiveSlideOpacity={0.7}
                     containerCustomStyle={styles.slider}
                     contentContainerCustomStyle={styles.sliderContentContainer}

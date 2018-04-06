@@ -9,13 +9,12 @@ function wp(percentage) {
 }
 
 const entryBorderRadius = 8;
-const slideHeight = deviceHeight * 0.75;
-const slideWidth = wp(75);
 const itemHorizontalMargin = wp(2);
 
 
 export const sliderWidth = deviceWidth;
-export const itemWidth = slideWidth + (itemHorizontalMargin * 2);
+export const itemHeight = deviceHeight * 0.75;
+export const itemWidth = wp(75) + (itemHorizontalMargin * 2);
 
 export const styles = {
     content: {
@@ -46,12 +45,13 @@ export const styles = {
 };
 
 export const layoutStyles = StyleSheet.create({
-    slideInnerContainer: {
+    slideContainer: {
         flex: 1,
         width: itemWidth,
-        height: slideHeight,
+        height: itemHeight,
         paddingHorizontal: itemHorizontalMargin,
-        paddingBottom: 18 // needed for shadow
+        paddingBottom: 18, // needed for shadow
+        borderRadius: entryBorderRadius
     },
     shadow: {
         position: 'absolute',
@@ -74,8 +74,8 @@ export const layoutStyles = StyleSheet.create({
         borderTopRightRadius: entryBorderRadius
     },
     image: {
+        flex: 1,
         width: itemWidth - (itemHorizontalMargin * 2),
-        height: slideHeight * 0.48,
         overflow: 'hidden',
         resizeMode: 'cover',
         borderRadius: IS_IOS ? entryBorderRadius : 0,
@@ -107,7 +107,6 @@ export const layoutStyles = StyleSheet.create({
         textAlign: 'center'
     },
     subtitle: {
-        // height: slideHeight * 0.30,
         marginTop: 6,
         color: '#323c46',
         fontSize: 16,
