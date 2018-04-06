@@ -19,7 +19,7 @@ class Steps extends Component {
         };
     }
 
-    _renderItem ({item, index}) {
+    _renderItem = ({item, index}) => {
         return <Layout data={item} />;
     }
 
@@ -52,7 +52,7 @@ class Steps extends Component {
                     renderItem={this._renderItem}
                     sliderWidth={sliderWidth}
                     itemWidth={itemWidth}
-                    inactiveSlideScale={0.94}
+                    inactiveSlideScale={1}
                     inactiveSlideOpacity={0.7}
                     containerCustomStyle={styles.slider}
                     contentContainerCustomStyle={styles.sliderContentContainer}

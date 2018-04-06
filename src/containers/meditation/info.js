@@ -24,6 +24,7 @@ class About extends Component {
                     containerViewStyle={{marginLeft: 0, marginRight: 0}}
                     buttonStyle={{padding: 15, elevation: 2}}
                     backgroundColor='#384756'
+                    rightIcon={{name: 'arrow-right', type: 'feather', color: '#e1767d'}}
                     title='How to Meditate'
                     onPress={() => this.props.navigation.navigate('Steps')} />
                 <View style={{ height: 50 }} />

@@ -113,8 +113,8 @@ class Setup extends Component {
         );
 
         return (
-            <SafeAreaView style={{flex: 1, backgroundColor: '#e8ded3' }}>
-                <StatusBar barStyle="light-content" backgroundColor="#706993" />
+            <SafeAreaView style={{flex: 1, backgroundColor: '#eb9e88' }}>
+                <StatusBar translucent barStyle="light-content" backgroundColor="rgba(0, 0, 0, 0.20)" />
                 {this.state.isReady ? <MainNavigator /> : loadingInfo}
             </SafeAreaView>
         );

@@ -3,7 +3,7 @@ export default {
     content: {
         flex: 1,
         padding: 15,
-        backgroundColor: '#e8ded3'
+        backgroundColor: '#f9f9f9'
     },
     title: {
         fontSize: 18,

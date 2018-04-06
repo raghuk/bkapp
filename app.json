@@ -8,23 +8,24 @@
         "version": "1.0.2",
         "platforms": ["ios", "android"],
         "orientation": "portrait",
-        "primaryColor": "#e8ded3",
+        "primaryColor": "#eb9e88",
         "icon": "./assets/icons/app-icon.png",
         "splash": {
             "image": "./assets/images/splash.png",
             "resizeMode": "cover",
-            "backgroundColor": "#ffffff"
+            "backgroundColor": "#eb9e88"
         },
         "notification": {
             "icon": "./assets/icons/notification-icon.png",
             "color": "#000000"
         },
         "androidStatusBar": {
-            "barStyle": "dark-content"
+            "barStyle": "dark-content",
+            "backgroundColor": "#eb9e88"
         },
         "assetBundlePatterns": ["./assets/images/*", "./assets/fonts/*"],
         "packagerOpts": {
-            "assetExts": ["ttf", "mp4"]
+            "assetExts": ["ttf", "mp4", "mp3"]
         },
         "updates": {
             "fallbackToCacheTimeout": 0

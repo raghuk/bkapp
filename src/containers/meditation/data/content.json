@@ -1,28 +1,28 @@
 
 [
     {
-        title: 'Relaxation',
-        subtitle: 'Relaxation is about letting go of tension and stress and bringing the mind and body into a state of calm and peace ...',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg'
+        "title": "Relaxation",
+        "subtitle": "Relaxation is about letting go of tension and stress and bringing the mind and body into a state of calm and peace.",
+        "illustration": require('../../../../assets/steps/relaxation.png')
     },
     {
-        title: 'Concentration',
-        subtitle: 'Concentration allows me to use my time productively, once I have relaxed: I focus on the thoughts I choose to have ...',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
+        "title": "Concentration",
+        "subtitle": "Concentration allows me to use my time productively, once I have relaxed: I focus on the thoughts I choose to have.",
+        "illustration": require('../../../../assets/steps/concentration.png')
     },
     {
-        title: 'Contemplation',
-        subtitle: 'Contemplation is reflecting deeply on myself, my inner world and my values ...',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg'
+        "title": "Contemplation",
+        "subtitle": "Contemplation is reflecting deeply on myself, my inner world and my values; which keeps the true end in sight.",
+        "illustration": require('../../../../assets/steps/contemplation.png')
     },
     {
-        title: 'Realisation',
-        subtitle: 'Realisation is when my understanding and feelings combine and I experience a more profound, more meaningful reality within ...',
-        illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
+        "title": "Realisation",
+        "subtitle": "Realisation is when my understanding and feelings combine and I experience a more meaningful reality within.",
+        "illustration": require('../../../../assets/steps/realisation.png')
     },
     {
-        title: 'Meditation',
-        subtitle: 'Meditation is focusing on a thought and remembering my eternal identity, and re-awakening a wonderful state of well-being ...',
-        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
+        "title": "Meditation",
+        "subtitle": "Meditation is focusing on a thought and remembering my eternal identity, and re-awakening a wonderful state of well-being.",
+        "illustration": require('../../../../assets/steps/meditation.png')
     }
 ];

@@ -31,7 +31,12 @@ export default class App extends Component {
             require('./assets/images/logo-cover.png'),
             require('./assets/images/pin.png'),
             require('./assets/images/splash.png'),
-            require('./assets/images/statusbar.png')
+            require('./assets/images/statusbar.png'),
+            require('./assets/steps/relaxation.png'),
+            require('./assets/steps/concentration.png'),
+            require('./assets/steps/contemplation.png'),
+            require('./assets/steps/realisation.png'),
+            require('./assets/steps/meditation.png')
         ]);
 
         await Promise.all([imageAssets, ...fontAssets]);

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {SQLite} from 'expo';
 import {isEmpty, isObject, find, split, concat, uniq} from 'lodash';
 
-import {View, ScrollView, Picker, TextInput, Alert, ImageBackground, KeyboardAvoidingView} from 'react-native';
+import {View, ScrollView, Picker, TextInput, Alert, ImageBackground, KeyboardAvoidingView, ActivityIndicator} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 
 import styles from './styles';
@@ -75,7 +75,14 @@ class SearchForm extends Component {
 
     render() {
         if (!this.state.isReady) {
-            return <ImageBackground imageStyle={{resizeMode: 'cover'}} style={{flex: 1}} source={require('../../../assets/images/splash.png')} />
+            return (
+                <ImageBackground
+                    imageStyle={{resizeMode: 'cover'}}
+                    style={{flex: 1, justifyContent: 'center'}}
+                    source={require('../../../assets/images/splash.png')}>
+                    <ActivityIndicator size="large" color="#5C5679" />
+                </ImageBackground>
+            );
         }
 
         return (

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 
-import { ParallaxImage } from 'react-native-snap-carousel';
+import {ParallaxImage} from 'react-native-snap-carousel';
 
-import styles from './styles';
+import {layoutStyles as styles} from '../styles';
 
 
 export default class Layout extends Component {
@@ -14,7 +14,7 @@ export default class Layout extends Component {
         parallaxProps: PropTypes.object
     };
 
-    get image () {
+    get image() {
         const { data: { illustration }, parallax, parallaxProps } = this.props;
 
         return parallax ? (
@@ -25,18 +25,17 @@ export default class Layout extends Component {
               parallaxFactor={0.35}
               showSpinner={true}
               spinnerColor={'rgba(0, 0, 0, 0.25)'}
-              {...parallaxProps}
-            />
+              {...parallaxProps} />
         ) : (
-            <Image source={{ uri: illustration }} style={styles.image} />
+            <Image source={illustration} style={styles.image} />
         );
     }
 
-    render () {
-        const { data: { title, subtitle } } = this.props;
+    render() {
+        const { title, subtitle } = this.props.data;
 
         const uppercaseTitle = title ? (
-            <Text style={styles.title} numberOfLines={2}>
+            <Text style={styles.title} numberOfLines={1}>
                 { title.toUpperCase() }
             </Text>
         ) : false;
@@ -50,7 +49,7 @@ export default class Layout extends Component {
                 </View>
                 <View style={styles.textContainer}>
                     { uppercaseTitle }
-                    <Text style={styles.subtitle} numberOfLines={5}>{ subtitle }</Text>
+                    <Text style={styles.subtitle} numberOfLines={4}>{ subtitle }</Text>
                 </View>
             </TouchableOpacity>
         );
