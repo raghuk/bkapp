@@ -120,6 +120,7 @@ class SearchForm extends Component {
                             maxLength={24}
                             style={{fontSize: 16, backgroundColor: '#e2e2e2', height: 50, padding: 10, marginBottom: 30}}
                             value={this.state.keywordValue}
+                            placeholderTextColor='#999999'
                             placeholder='Enter keyword to refine search'
                             underlineColorAndroid='transparent'
                             onChangeText={(text) => this.setState({keywordValue: text})} />

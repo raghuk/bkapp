@@ -5,7 +5,7 @@
         "slug": "brahma-kumaris-app",
         "privacy": "public",
         "sdkVersion": "26.0.0",
-        "version": "1.0.2",
+        "version": "1.0.4",
         "platforms": ["ios", "android"],
         "orientation": "portrait",
         "primaryColor": "#eb9e88",
@@ -32,9 +32,10 @@
         },
         "android": {
             "package": "com.brahmakumaris.app",
+            "versionCode": "2",
             "config": {
                 "googleMaps": {
-                    "apiKey": "AIzaSyAZUad5jBTl_kicp0YgqagjR0NU-V5Y34I"
+                    "apiKey": "AIzaSyCIGOO2BsaUksPXL5lA-Dq2LnU8I2MdRJ4"
                 }
             }
         },

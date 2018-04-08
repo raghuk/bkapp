@@ -25,3 +25,10 @@ export function connectionState(connectionInfo) {
         connectionInfo
     };
 }
+
+export function setAuthUser(user) {
+    return {
+        type: types.SET_AUTH_USER,
+        user
+    };
+}

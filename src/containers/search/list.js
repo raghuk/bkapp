@@ -101,7 +101,7 @@ class SearchList extends Component {
         if (!this.state.isReady) {
             return (
                 <View style={{flex: 1, justifyContent: 'center'}}>
-                    <ActivityIndicator size="large" color="#d04037" />
+                    <ActivityIndicator size="large" color="#5C5679" />
                 </View>
             );
         }

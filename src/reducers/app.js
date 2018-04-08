@@ -4,7 +4,8 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
     isFetching: 0,
-    connectionInfo: {}
+    connectionInfo: {},
+    user: {}
 };
 
 const isFetching = (state = initialState.isFetching, action) => {
@@ -27,11 +28,21 @@ const connectionInfo = (state = initialState.connectionInfo, action) => {
     }
 };
 
+const user = (state = initialState.user, action) => {
+    switch (action.type) {
+        case types.SET_AUTH_USER:
+            return action.user;
+        default:
+            return state;
+    }
+};
+
 
 // Combine all sub-reducers into one root reducer
 const app = combineReducers({
     isFetching,
-    connectionInfo
+    connectionInfo,
+    user
 });
 
 export default app;

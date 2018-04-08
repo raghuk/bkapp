@@ -9,7 +9,7 @@ import {firebaseApp} from './config';
 import registerForPN from './helpers/registerForPN';
 import MainNavigator from './Navigator';
 
-import {connectionState} from './actions/app';
+import {connectionState, setAuthUser} from './actions/app';
 import locations from '../data/locations.json';
 
 const db = SQLite.openDatabase('bkapp.db');
@@ -51,7 +51,7 @@ class Setup extends Component {
         this.props.connectionState(connectionInfo);
     }
 
-    _registerDeviceForPN = () => {
+    _registerDeviceForPN = async () => {
         let email = `${Constants.deviceId}@bkapp.com`;
         let password = 'karankaravanharkarrahehai108';
 
@@ -59,20 +59,27 @@ class Setup extends Component {
             console.log('User creation success');
             return firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
                 console.log('User signed in successfully');
-                return registerForPN();
+                return this._onLoginSucess();
             }).catch((err) => { console.log('Authentication failed', err); })
         }).catch((err) => {
             console.log('User creation failed, checking for email already in use', err);
             if (err.code === 'auth/email-already-in-use') {
                 firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
                     console.log('User signed in successfully');
-                    return registerForPN();
+                    return this._onLoginSucess();
                 }).catch((err) => { console.log('Authentication failed again', err); })
             }
         });
     }
 
     _handleNotification = (notification) => {
+    }
+
+    _onLoginSucess = () => {
+        let userId = firebaseApp.auth().currentUser.uid;
+        this.props.setAuthUser(userId);
+
+        registerForPN(userId);
     }
 
     _onCreateSuccess = async () => {
@@ -124,7 +131,8 @@ class Setup extends Component {
 
 function bindAction(dispatch) {
     return {
-        connectionState: connectionInfo => dispatch(connectionState(connectionInfo))
+        connectionState: connectionInfo => dispatch(connectionState(connectionInfo)),
+        setAuthUser: user => dispatch(setAuthUser(user))
     };
 }
 
