@@ -9,7 +9,7 @@ import {firebaseApp} from './config';
 import registerForPN from './helpers/registerForPN';
 import MainNavigator from './Navigator';
 
-import {connectionState, setAuthUser} from './actions/app';
+import {connectionState, setAuthUser, updateDBat} from './actions/app';
 import locations from '../data/locations.json';
 
 const db = SQLite.openDatabase('bkapp.db');
@@ -25,12 +25,21 @@ class Setup extends Component {
     }
 
     componentWillMount() {
-        let query = "CREATE TABLE IF NOT EXISTS centers (id int primary key not null, name text not null, addr1 text not null, addr2 text, addr3 text, district_id int not null, district text not null, city text not null, state_id int not null, state text not null, pincode int, email text, contact text, mobile text, glat text, glong text, zone text, subzone text);";
+        let timestamp = this.props.updatedDBat;
 
-        db.transaction(tx => {
-            tx.executeSql('DROP TABLE IF EXISTS centers;');
-            tx.executeSql(query, null, this._onCreateSuccess, (tx, err) => console.log('error creating table: ', err));
-        }, err => console.log('error creating transaction ', err));
+        if (timestamp === 0) {
+            let query = "CREATE TABLE IF NOT EXISTS centers (id int primary key not null, name text not null, addr1 text not null, addr2 text, addr3 text, district_id int not null, district text not null, city text not null, state_id int not null, state text not null, pincode int, email text, contact text, mobile text, glat text, glong text, zone text, subzone text);";
+
+            db.transaction(tx => {
+                tx.executeSql('DROP TABLE IF EXISTS centers;');
+                tx.executeSql(query, null, this._onCreateSuccess, (tx, err) => console.log('error creating table: ', err));
+            }, err => console.log('error creating transaction ', err));
+        } else {
+            let updateAt = new Date(timestamp*1000);
+            console.log('DB already updated on: ', updateAt.toString());
+
+            this.setState({ isReady: true });
+        }
     }
 
     componentDidMount() {
@@ -65,7 +74,7 @@ class Setup extends Component {
             console.log('User creation failed, checking for email already in use', err);
             if (err.code === 'auth/email-already-in-use') {
                 firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
-                    console.log('User signed in successfully');
+                    console.log('User again signed in successfully');
                     return this._onLoginSucess();
                 }).catch((err) => { console.log('Authentication failed again', err); })
             }
@@ -73,13 +82,14 @@ class Setup extends Component {
     }
 
     _handleNotification = (notification) => {
+        console.log('we got notification');
     }
 
     _onLoginSucess = () => {
         let userId = firebaseApp.auth().currentUser.uid;
-        this.props.setAuthUser(userId);
 
         registerForPN(userId);
+        return this.props.setAuthUser(userId);
     }
 
     _onCreateSuccess = async () => {
@@ -106,7 +116,14 @@ class Setup extends Component {
                 let query = `INSERT INTO centers VALUES ${centers[i]};`;
                 tx.executeSql(query);
             }
-        }, err => console.log('error insert: ', err), () => this.setState({isReady: true}));
+        }, err => console.log('error insert: ', err), () => this._onInsertSuccess());
+    }
+
+    _onInsertSuccess = () => {
+        console.log('rows instered successfully');
+
+        this.props.updateDBat();
+        this.setState({ isReady: true });
     }
 
     render() {
@@ -129,11 +146,16 @@ class Setup extends Component {
 }
 
 
+const mapStateToProps = state => ({
+    updatedDBat: state.app.updatedDBat
+});
+
 function bindAction(dispatch) {
     return {
         connectionState: connectionInfo => dispatch(connectionState(connectionInfo)),
-        setAuthUser: user => dispatch(setAuthUser(user))
+        setAuthUser: user => dispatch(setAuthUser(user)),
+        updateDBat: timestamp => dispatch(updateDBat(timestamp))
     };
 }
 
-export default connect(null, bindAction)(Setup);
+export default connect(mapStateToProps, bindAction)(Setup);

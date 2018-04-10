@@ -149,20 +149,20 @@ const AboutTab = StackNavigator({
 
 const MainNavigator = DrawerNavigator(
     {
-        MeditationTab: {
-            screen: MeditationTab,
-            path: '/',
-            navigationOptions: () => ({
-                drawerLabel: 'Meditation',
-                drawerIcon: <Icon name='ios-radio-outline' type='ionicon' color='#d72125' size={30} />
-            })
-        },
         SearchTab: {
             screen: SearchTab,
             path: '/search',
             navigationOptions: () => ({
                 drawerLabel: 'Branch Locator',
                 drawerIcon: <Icon name='md-search' type='ionicon' color='#d72125' size={28} />
+            })
+        },
+        MeditationTab: {
+            screen: MeditationTab,
+            path: '/',
+            navigationOptions: () => ({
+                drawerLabel: 'Meditation',
+                drawerIcon: <Icon name='ios-radio-outline' type='ionicon' color='#d72125' size={30} />
             })
         },
         AboutTab: {
@@ -177,7 +177,7 @@ const MainNavigator = DrawerNavigator(
     {
         drawerWidth: deviceWidth * 0.82,
         drawerPosition: 'left',
-        initialRouteName: 'MeditationTab',
+        initialRouteName: 'SearchTab',
         contentComponent: (props) => <View style={{flex: 1}}><Sidebar {...props} /></View>,
         drawerBackgroundColor: '#fdfdfd'
     }
