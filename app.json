@@ -32,6 +32,7 @@
         },
         "android": {
             "package": "com.brahmakumaris.app",
+            "versionCode": 2,
             "config": {
                 "googleMaps": {
                     "apiKey": "AIzaSyCQ2Ox9TWH2JtBDQ8IujJs5ahRUvKul8d8"

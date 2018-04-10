@@ -161,7 +161,7 @@ const MainNavigator = DrawerNavigator(
             screen: MeditationTab,
             path: '/',
             navigationOptions: () => ({
-                drawerLabel: 'Meditation',
+                drawerLabel: 'Meditation Lab',
                 drawerIcon: <Icon name='ios-radio-outline' type='ionicon' color='#d72125' size={30} />
             })
         },
