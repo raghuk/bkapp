@@ -3,26 +3,26 @@
     {
         "title": "Relaxation",
         "subtitle": "Relaxation is about letting go of tension and stress and bringing the mind and body into a state of calm and peace.",
-        "illustration": require('../../../../assets/steps/relaxation.png')
+        "illustration": require('../../../../assets/images/steps/relaxation.png')
     },
     {
         "title": "Concentration",
         "subtitle": "Concentration allows me to use my time productively, once I have relaxed: I focus on the thoughts I choose to have.",
-        "illustration": require('../../../../assets/steps/concentration.png')
+        "illustration": require('../../../../assets/images/steps/concentration.png')
     },
     {
         "title": "Contemplation",
         "subtitle": "Contemplation is reflecting deeply on myself, my inner world and my values; which keeps the true end in sight.",
-        "illustration": require('../../../../assets/steps/contemplation.png')
+        "illustration": require('../../../../assets/images/steps/contemplation.png')
     },
     {
         "title": "Realisation",
         "subtitle": "Realisation is when my understanding and feelings combine and I experience a more meaningful reality within.",
-        "illustration": require('../../../../assets/steps/realisation.png')
+        "illustration": require('../../../../assets/images/steps/realisation.png')
     },
     {
         "title": "Meditation",
         "subtitle": "Meditation is focusing on a thought and remembering my eternal identity, and re-awakening a wonderful state of well-being.",
-        "illustration": require('../../../../assets/steps/meditation.png')
+        "illustration": require('../../../../assets/images/steps/meditation.png')
     }
 ];
