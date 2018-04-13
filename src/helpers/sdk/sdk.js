@@ -1,3 +1,8 @@
+
+const username = 'a339d57a483e9a4dc1d831bd5e7e649d';
+const password = '74beaadf06189d379a2b4b89672a6903';
+
+
 export default class AppSdk {
 
     constructor(client) {
@@ -15,8 +20,8 @@ export default class AppSdk {
             }
         });
 
-        result.getList = () => this._client.get(`/centers/list`);
-        result.getBranches = (state, city, keyword) => this._client.get(`/centers/search?state=${state}&city=${city}&keyword=${keyword}`);
+        result.getLocations = () => this._client.get(`/locations`).auth(username, password, {type: 'auto'});
+        result.getUpdatedLocations = (date) => this._client.get(`/locations?updated=${date}`);
 
         return result;
     }

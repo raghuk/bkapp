@@ -4,13 +4,14 @@ import {api} from '../config';
 const TIMEOUT = 10000;
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
-var Promise = require('es6-promise').Promise;
+let Promise = require('es6-promise').Promise;
+
 
 class ApiClient {
     constructor() {
         methods.forEach((method) => {
             this[method] = (path, options) => {
-                return new Promise((resolve, reject) => {
+                return Promise((resolve, reject) => {
                     const request = superagent[method](this.formatUrl(path));
                     request.timeout(TIMEOUT);
 
@@ -38,7 +39,7 @@ class ApiClient {
     formatUrl(path) {
         let adjustedPath = (path[0] !== '/') ? '/' + path : path;
 
-        return 'http://'+ api.host + api.version + adjustedPath;
+        return `http://${api.host}${api.port}${api.version}${adjustedPath}`;
     }
 }
 

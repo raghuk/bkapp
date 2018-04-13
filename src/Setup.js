@@ -9,7 +9,8 @@ import {firebaseApp} from './config';
 import registerForPN from './helpers/registerForPN';
 import MainNavigator from './Navigator';
 
-import {connectionState, setAuthUser, updateDBat} from './actions/app';
+import {connectionState, setAuthUser} from './actions/app';
+import {setDateDB} from './actions/search';
 import locations from '../data/locations.json';
 
 const db = SQLite.openDatabase('bkapp.db');
@@ -25,7 +26,7 @@ class Setup extends Component {
     }
 
     componentWillMount() {
-        let timestamp = this.props.updatedDBat;
+        let timestamp = this.props.updatedAt;
 
         if (timestamp === 0) {
             let query = "CREATE TABLE IF NOT EXISTS centers (id int primary key not null, name text not null, addr1 text not null, addr2 text, addr3 text, district_id int not null, district text not null, city text not null, state_id int not null, state text not null, pincode int, email text, contact text, mobile text, glat text, glong text, zone text, subzone text);";
@@ -57,7 +58,12 @@ class Setup extends Component {
     }
 
     _handleConnectionChange = (connectionInfo) => {
+        console.log('connection change: ', connectionInfo);
         this.props.connectionState(connectionInfo);
+    }
+
+    _handleNotification = (notification) => {
+        console.log('got notification: ', notification);
     }
 
     _registerDeviceForPN = async () => {
@@ -79,10 +85,6 @@ class Setup extends Component {
                 }).catch((err) => { console.log('Authentication failed again', err); })
             }
         });
-    }
-
-    _handleNotification = (notification) => {
-        console.log('we got notification');
     }
 
     _onLoginSucess = () => {
@@ -122,7 +124,7 @@ class Setup extends Component {
     _onInsertSuccess = () => {
         console.log('rows instered successfully');
 
-        this.props.updateDBat();
+        this.props.setDateDB();
         this.setState({ isReady: true });
     }
 
@@ -147,14 +149,14 @@ class Setup extends Component {
 
 
 const mapStateToProps = state => ({
-    updatedDBat: state.app.updatedDBat
+    updatedAt: state.search.updatedAt
 });
 
 function bindAction(dispatch) {
     return {
         connectionState: connectionInfo => dispatch(connectionState(connectionInfo)),
         setAuthUser: user => dispatch(setAuthUser(user)),
-        updateDBat: timestamp => dispatch(updateDBat(timestamp))
+        setDateDB: () => dispatch(setDateDB())
     };
 }
 

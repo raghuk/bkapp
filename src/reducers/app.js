@@ -5,8 +5,7 @@ import * as types from '../actions/actionTypes';
 const initialState = {
     isFetching: 0,
     connectionInfo: {},
-    user: {},
-    updatedDBat: 0
+    user: {}
 };
 
 const isFetching = (state = initialState.isFetching, action) => {
@@ -38,22 +37,12 @@ const user = (state = initialState.user, action) => {
     }
 };
 
-const updatedDBat = (state = initialState.updatedDBat, action) => {
-    switch (action.type) {
-        case types.SET_DB_UPDATE_DATE:
-            return action.timestamp;
-        default:
-            return state;
-    }
-};
-
 
 // Combine all sub-reducers into one root reducer
 const app = combineReducers({
     isFetching,
     connectionInfo,
-    user,
-    updatedDBat
+    user
 });
 
 export default app;

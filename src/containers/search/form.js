@@ -6,6 +6,8 @@ import {isEmpty, isObject, find, split, concat, uniq} from 'lodash';
 import {View, ScrollView, Picker, TextInput, Alert, ImageBackground, KeyboardAvoidingView, ActivityIndicator} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 
+import {getLocations} from '../../actions/search';
+
 import styles from './styles';
 
 const db = SQLite.openDatabase('bkapp.db');
@@ -31,7 +33,7 @@ class SearchForm extends Component {
 
         db.transaction(tx => {
             tx.executeSql(query, null, this._onSelectSuccess, (tx, err) => console.log('error select request: ', err));
-        }, err => console.log('error getList transaction ', err));
+        }, err => console.log('error getting locations list transaction ', err));
     }
 
     _onSelectSuccess = async (tx, results) => {
@@ -143,4 +145,14 @@ class SearchForm extends Component {
 }
 
 
-export default connect(null, null)(SearchForm);
+const mapStateToProps = state => ({
+    updatedAt: state.search.updatedAt
+});
+
+function bindAction(dispatch) {
+    return {
+        getLocations: () => dispatch(getLocations())
+    };
+}
+
+export default connect(mapStateToProps, bindAction)(SearchForm);

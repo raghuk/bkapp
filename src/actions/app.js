@@ -32,10 +32,3 @@ export function setAuthUser(user) {
         user
     };
 }
-
-export function updateDBat(timestamp = Date.now()) {
-    return {
-        type: types.SET_DB_UPDATE_DATE,
-        timestamp
-    };
-}

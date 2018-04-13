@@ -1,14 +1,19 @@
 // App
 export const APP_RESET = 'APP_RESET';
 export const SET_CONNECTION_STATUS = 'SET_CONNECTION_STATUS';
-export const SET_DB_UPDATE_DATE = 'SET_DB_UPDATE_DATE';
 
 // Loader
 export const SHOW_LOADER = 'SHOW_LOADER';
 export const HIDE_LOADER = 'HIDE_LOADER';
 
 // Search
+export const SET_DB_DATE = 'SET_DB_DATE';
 export const SET_CURRENT_BRANCH = 'SET_CURRENT_BRANCH';
+
+export const LOCATIONS_LOAD = 'LOCATIONS_LOAD';
+export const LOCATIONS_LOAD_SUCCESS = 'LOCATIONS_LOAD_SUCCESS';
+export const LOCATIONS_LOAD_FAILURE = 'LOCATIONS_LOAD_FAILURE';
+
 
 // User
 export const SET_AUTH_USER = 'SET_AUTH_USER';

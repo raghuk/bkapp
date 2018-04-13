@@ -11,4 +11,4 @@ var firebaseConfig = {
 };
 
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
-export const api = {host: '', version: ''};
+export const api = {host: 'http://padt.bkapps.org', port: ':8080', version: ''};
