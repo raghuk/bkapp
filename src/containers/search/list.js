@@ -4,7 +4,7 @@ import {SQLite} from 'expo';
 import {isEmpty, join, filter, lowerCase, orderBy, toString, toNumber, trim, compact} from 'lodash';
 
 import {View, ScrollView, ActivityIndicator, FlatList, Text} from 'react-native';
-import {ListItem, SearchBar} from 'react-native-elements';
+import {Icon, ListItem, SearchBar} from 'react-native-elements';
 
 import styles from './styles';
 
@@ -77,10 +77,10 @@ class SearchList extends Component {
         return (
             <ListItem
                 key={item.id}
-                chevronColor='#5c5679'
                 containerStyle={styles.listItem}
                 fontFamily='Titillium'
                 hideChevron={false}
+                rightIcon={<Icon name='ios-arrow-forward' type='ionicon' color='#5c5679' size={24} iconStyle={{marginLeft: 10}} />}
                 title={item.name}
                 titleNumberOfLines={1}
                 titleStyle={{fontSize: 18, marginLeft: 5}}

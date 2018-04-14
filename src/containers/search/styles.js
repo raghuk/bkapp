@@ -9,8 +9,8 @@ export default {
     },
     searchContainer: {
         backgroundColor: '#706993',
-        borderTopColor: '#5c5679',
-        borderBottomColor: '#7f2d2c'
+        borderTopColor: '#706993',
+        borderBottomColor: '#706993'
     },
     searchInput: {
         color: '#323c46',
@@ -20,7 +20,7 @@ export default {
     },
     listItem: {
         backgroundColor: '#fdfdfd',
-        borderBottomColor: '#7f2d2c'
+        borderBottomColor: '#706993'
     },
     notice: {
         color: '#323c46',

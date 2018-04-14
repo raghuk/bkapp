@@ -5,7 +5,7 @@
         "slug": "brahma-kumaris-app",
         "privacy": "public",
         "sdkVersion": "26.0.0",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "platforms": ["ios", "android"],
         "orientation": "portrait",
         "primaryColor": "#eb9e88",
@@ -23,16 +23,17 @@
             "barStyle": "dark-content",
             "backgroundColor": "#eb9e88"
         },
-        "assetBundlePatterns": ["./assets/images/*", "./assets/fonts/*"],
+        "assetBundlePatterns": ["./assets/images/*", "./assets/fonts/*", "node_modules/@expo/vector-icons/fonts/Ionicons.ttf"],
         "packagerOpts": {
             "assetExts": ["ttf", "mp4", "mp3"]
         },
         "updates": {
+            "enabled": true,
             "fallbackToCacheTimeout": 0
         },
         "android": {
             "package": "com.brahmakumaris.app",
-            "versionCode": 2,
+            "versionCode": 3,
             "config": {
                 "googleMaps": {
                     "apiKey": "AIzaSyCQ2Ox9TWH2JtBDQ8IujJs5ahRUvKul8d8"
