@@ -5,7 +5,7 @@ import * as types from '../actions/actionTypes';
 const initialState = {
     isFetching: 0,
     connectionInfo: {},
-    user: {}
+    authUser: {}
 };
 
 const isFetching = (state = initialState.isFetching, action) => {
@@ -28,7 +28,7 @@ const connectionInfo = (state = initialState.connectionInfo, action) => {
     }
 };
 
-const user = (state = initialState.user, action) => {
+const authUser = (state = initialState.authUser, action) => {
     switch (action.type) {
         case types.SET_AUTH_USER:
             return action.user;
@@ -42,7 +42,7 @@ const user = (state = initialState.user, action) => {
 const app = combineReducers({
     isFetching,
     connectionInfo,
-    user
+    authUser
 });
 
 export default app;

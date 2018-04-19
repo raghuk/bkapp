@@ -6,6 +6,7 @@ import {isEmpty, replace, map, trim} from 'lodash';
 import {StatusBar, SafeAreaView, ActivityIndicator, ImageBackground, NetInfo} from 'react-native';
 
 import {firebaseApp} from './config';
+import {getTime} from './helpers/misc';
 import registerForPN from './helpers/registerForPN';
 import MainNavigator from './Navigator';
 
@@ -27,8 +28,10 @@ class Setup extends Component {
 
     componentWillMount() {
         let timestamp = this.props.updatedAt;
+        let lastUpdatedDate = new Date(timestamp);
+        let diff = getTime(lastUpdatedDate, new Date());
 
-        if (timestamp === 0) {
+        if (timestamp === 0 || diff >= 7) {
             let query = "CREATE TABLE IF NOT EXISTS centers (id int primary key not null, name text not null, addr1 text not null, addr2 text, addr3 text, district_id int not null, district text not null, city text not null, state_id int not null, state text not null, pincode int, email text, contact text, mobile text, glat text, glong text, zone text, subzone text);";
 
             db.transaction(tx => {
@@ -36,8 +39,7 @@ class Setup extends Component {
                 tx.executeSql(query, null, this._onCreateSuccess, (tx, err) => console.log('error creating table: ', err));
             }, err => console.log('error creating transaction ', err));
         } else {
-            let updateAt = new Date(timestamp*1000);
-            console.log('DB already updated on: ', updateAt.toString());
+            console.log('DB already updated on: ', lastUpdatedDate.toString());
 
             this.setState({ isReady: true });
         }
@@ -48,7 +50,7 @@ class Setup extends Component {
         Notifications.addListener(this._handleNotification);
 
         NetInfo.isConnected.fetch().then(isConnected => {
-            return isConnected ? this._registerDeviceForPN() : true;
+            return isConnected ? this._registerDeviceForPN() : false;
         }).catch((err) => { });
     }
 
