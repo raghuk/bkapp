@@ -120,9 +120,7 @@ class SearchList extends Component {
                 <ScrollView style={styles.content}>
                 {
                     isEmpty(branchList) ?
-                    <View style={styles.notice}>
-                        <Text>Sorry, no branches found with your search/filter criteria.</Text>
-                    </View> :
+                    <Text style={styles.notice}>{`Sorry, no branches found with your\nsearch/filter keyword.`}</Text> :
                     <FlatList
                         data={branchList}
                         keyExtractor={(item, index) => item.id}

@@ -90,7 +90,7 @@ class SearchForm extends Component {
         return (
             <KeyboardAvoidingView style={styles.content} behavior="padding">
                 <ScrollView style={styles.searchView}>
-                    <Text style={styles.title}>Please select below options:</Text>
+                    <Text style={styles.title}>{`You can search branch by selecting\nState & City OR State & Keyword`}</Text>
                     <View style={styles.pickerView}>
                         <Text style={styles.label}>Select State:</Text>
                         <Picker

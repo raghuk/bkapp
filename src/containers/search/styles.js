@@ -25,9 +25,9 @@ export default {
     notice: {
         color: '#323c46',
         fontSize: 18,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 30
+        fontFamily: 'Titillium',
+        textAlign: 'center',
+        padding: 20
     },
     title: {
         fontSize: 18,

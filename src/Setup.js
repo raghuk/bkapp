@@ -6,13 +6,13 @@ import {isEmpty, replace, map, trim} from 'lodash';
 import {StatusBar, SafeAreaView, ActivityIndicator, ImageBackground, NetInfo} from 'react-native';
 
 import {firebaseApp} from './config';
-import {getTime} from './helpers/misc';
+import {getUserLocation, getTime} from './helpers/misc';
 import registerForPN from './helpers/registerForPN';
 import MainNavigator from './Navigator';
 
 import {connectionState, setAuthUser} from './actions/app';
 import {setDateDB} from './actions/search';
-import locations from '../data/locations.json';
+import locations from '../assets/data/locations.json';
 
 const db = SQLite.openDatabase('bkapp.db');
 
@@ -93,6 +93,8 @@ class Setup extends Component {
         let userId = firebaseApp.auth().currentUser.uid;
 
         registerForPN(userId);
+        getUserLocation(userId);
+
         return this.props.setAuthUser(userId);
     }
 
@@ -141,7 +143,7 @@ class Setup extends Component {
         );
 
         return (
-            <SafeAreaView style={{flex: 1, backgroundColor: '#eb9e88' }}>
+            <SafeAreaView style={{flex: 1, backgroundColor: '#eb9e88'}}>
                 <StatusBar translucent barStyle="light-content" backgroundColor="rgba(0, 0, 0, 0.20)" />
                 {this.state.isReady ? <MainNavigator /> : loadingInfo}
             </SafeAreaView>

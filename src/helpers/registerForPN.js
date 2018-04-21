@@ -1,11 +1,10 @@
-import {Constants, Location, Permissions, Notifications} from 'expo';
+import {Constants, Permissions, Notifications} from 'expo';
 
 import {firebaseApp} from '../config';
 
 
 export default (async function registerForPN(userId) {
-    // let { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-    let { status } = await Permissions.getAsync(Permissions.LOCATION);
+    let { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
 
     // Stop here if the user did not grant permissions
     if (status !== 'granted') {
@@ -14,11 +13,9 @@ export default (async function registerForPN(userId) {
 
     // Get the token that uniquely identifies this device
     let token = await Notifications.getExpoPushTokenAsync();
-    let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
 
     firebaseApp.database().ref('users/'+ userId).update({
         token: token,
-        location: location,
         platform: Constants.platform,
         deviceName: Constants.deviceName
     });

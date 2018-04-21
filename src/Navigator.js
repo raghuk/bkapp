@@ -15,7 +15,7 @@ const deviceWidth = Dimensions.get('window').width;
 const MeditationTab = StackNavigator({
     Info: {
         screen: Info,
-        path: '/',
+        path: '/meditation',
         navigationOptions: ({ navigation }) => ({
             title: 'Raja Yoga Meditation',
             // headerTransparent: true,
@@ -39,7 +39,7 @@ const MeditationTab = StackNavigator({
     },
     Steps: {
         screen: Steps,
-        path: '/steps',
+        path: '/meditation/steps',
         navigationOptions: ({ navigation }) => ({
             title: 'How to Meditate',
             // headerTransparent: true,
@@ -159,7 +159,7 @@ const MainNavigator = DrawerNavigator(
         },
         MeditationTab: {
             screen: MeditationTab,
-            path: '/',
+            path: '/meditation',
             navigationOptions: () => ({
                 drawerLabel: 'Meditation Lab',
                 drawerIcon: <Icon name='ios-radio-outline' type='ionicon' color='#d72125' size={30} />
