@@ -11,7 +11,7 @@ class ApiClient {
     constructor() {
         methods.forEach((method) => {
             this[method] = (path, options) => {
-                return Promise((resolve, reject) => {
+                return new Promise((resolve, reject) => {
                     const request = superagent[method](this.formatUrl(path));
                     request.timeout(TIMEOUT);
 

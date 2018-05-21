@@ -60,7 +60,6 @@ class Setup extends Component {
     }
 
     _handleConnectionChange = (connectionInfo) => {
-        console.log('connection change: ', connectionInfo);
         this.props.connectionState(connectionInfo);
     }
 
@@ -74,19 +73,22 @@ class Setup extends Component {
 
         firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(() => {
             console.log('User creation success');
-            return firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
-                console.log('User signed in successfully');
-                return this._onLoginSucess();
-            }).catch((err) => { console.log('Authentication failed', err); })
+
+            return firebaseApp.auth().signInWithEmailAndPassword(email, password);
         }).catch((err) => {
             console.log('User creation failed, checking for email already in use', err);
+
             if (err.code === 'auth/email-already-in-use') {
-                firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
-                    console.log('User again signed in successfully');
-                    return this._onLoginSucess();
-                }).catch((err) => { console.log('Authentication failed again', err); })
+                return firebaseApp.auth().signInWithEmailAndPassword(email, password);
+            } else {
+                console.log('Can not handle an Unknown error', err);
+                throw err;
             }
-        });
+        }).then(() => {
+            console.log('User signed in successfully');
+
+            return this._onLoginSucess();
+        }).catch((err) => { console.log('Authentication failed again', err); });
     }
 
     _onLoginSucess = () => {

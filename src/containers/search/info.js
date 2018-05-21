@@ -1,15 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {MapView} from 'expo';
-import {isEmpty} from 'lodash';
+import {isEmpty, split, map} from 'lodash';
 
-import {ScrollView, Text, Share, Dimensions} from 'react-native';
+import {ScrollView, Text, Share, Linking} from 'react-native';
 import {Button} from 'react-native-elements';
 
 import styles from './styles';
-
-// const deviceWidth = Dimensions.get('window').width;
-const deviceHeight = Dimensions.get('window').height;
 
 
 class SearchInfo extends Component {
@@ -45,9 +42,30 @@ class SearchInfo extends Component {
         }).then(result => console.log(result)).catch(error => console.log(error));
     }
 
+    _callNumber = (url) => {
+        Linking.canOpenURL(url).then(supported => {
+            if (!supported) {
+                console.log('Can not handle url: ', url);
+                return false;
+            } else {
+                return Linking.openURL(url);
+            }
+        }).catch(err => console.error('An error occurred', err));
+    }
+
     render() {
+        let contacts = '';
         let branch = this.state.branch;
-        let address = isEmpty(branch.email) ? `${branch.address}\n\n${branch.contact}` : `${branch.address}\n\n${branch.email}\n${branch.contact}`;
+        let address = isEmpty(branch.email) ? `${branch.address}` : `${branch.address}\n\n${branch.email}`;
+
+        if (!isEmpty(branch.contact)) {
+            contacts = split(branch.contact, ',');
+            contacts = map(contacts, (c) => {
+                c = c.replace(/[-\s+]/g, '');       // remove all spaces and -
+                c = c.replace(/^0+/g, '');          // remove leading zero
+                return (<Text onPress={()=> this.callNumber(`tel:+91${c}`)}>{`+91${c}`}</Text>);
+            });
+        }
 
         let {latitude, longitude} = branch.coords;
         let marker = {latitude: latitude, longitude: longitude};
@@ -55,7 +73,7 @@ class SearchInfo extends Component {
         return (
             <ScrollView style={styles.content}>
                 <MapView
-                    style={{alignSelf: 'stretch', height: deviceHeight / 2.2}}
+                    style={styles.mapView}
                     minZoomLevel={3}
                     maxZoomLevel={(latitude === 0) ? 4 : 20}
                     initialRegion={{
@@ -73,6 +91,7 @@ class SearchInfo extends Component {
                 </MapView>
                 { (latitude === 0) ? <Text style={[styles.desc, {color: '#f44242'}]}>We do not have Google Map information for this location. We will update soon.</Text> : null }
                 <Text style={styles.desc}>{`${branch.name}\n${address}\n\n`}</Text>
+                <Fragment>{`${contacts}\n\n`}</Fragment>
             </ScrollView>
         );
     }

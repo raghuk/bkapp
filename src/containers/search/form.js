@@ -78,12 +78,14 @@ class SearchForm extends Component {
     render() {
         if (!this.state.isReady) {
             return (
-                <ImageBackground
-                    imageStyle={{resizeMode: 'cover'}}
-                    style={{flex: 1, justifyContent: 'center'}}
-                    source={require('../../../assets/images/splash.png')}>
-                    <ActivityIndicator size="large" color="#5C5679" />
-                </ImageBackground>
+                <View style={styles.content}>
+                    <ImageBackground
+                        imageStyle={{resizeMode: 'cover'}}
+                        style={styles.loader}
+                        source={require('../../../assets/images/loader.png')}>
+                        <ActivityIndicator size="large" color="#5C5679" />
+                    </ImageBackground>
+                </View>
             );
         }
 

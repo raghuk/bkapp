@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {SQLite} from 'expo';
 import {isEmpty, join, filter, lowerCase, orderBy, toString, toNumber, trim, compact} from 'lodash';
 
-import {View, ScrollView, ActivityIndicator, FlatList, Text} from 'react-native';
+import {View, ScrollView, ActivityIndicator, ImageBackground, FlatList, Text} from 'react-native';
 import {Icon, ListItem, SearchBar} from 'react-native-elements';
 
 import styles from './styles';
@@ -100,8 +100,13 @@ class SearchList extends Component {
 
         if (!this.state.isReady) {
             return (
-                <View style={{flex: 1, justifyContent: 'center'}}>
-                    <ActivityIndicator size="large" color="#5C5679" />
+                <View style={styles.content}>
+                    <ImageBackground
+                        imageStyle={{resizeMode: 'cover'}}
+                        style={styles.loader}
+                        source={require('../../../assets/images/loader.png')}>
+                        <ActivityIndicator size="large" color="#5C5679" />
+                    </ImageBackground>
                 </View>
             );
         }

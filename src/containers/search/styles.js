@@ -1,3 +1,7 @@
+import {Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('window');
+
 
 export default {
     listView: {
@@ -6,6 +10,13 @@ export default {
     content: {
         flex: 1,
         backgroundColor: '#f9f9f9'
+    },
+    loader: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: height * 0.75,
+        backgroundColor: '#fcfcfc'
     },
     searchContainer: {
         backgroundColor: '#706993',
@@ -30,7 +41,7 @@ export default {
         padding: 20
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
         fontFamily: 'Titillium',
         textAlign: 'center'
     },
@@ -46,7 +57,6 @@ export default {
         paddingRight: 10
     },
     picker: {
-        color: '#323c46',
         backgroundColor: '#e2e2e2'
     },
     label: {
@@ -55,6 +65,10 @@ export default {
         fontFamily: 'Titillium',
         marginTop: 25,
         marginBottom: 10
+    },
+    mapView: {
+        alignSelf: 'stretch',
+        height: height / 2.2
     },
     desc: {
         color: '#323c46',
