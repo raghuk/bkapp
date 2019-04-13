@@ -1,48 +1,46 @@
 {
-    "expo": {
-        "name": "Brahma Kumaris",
-        "description": "Brahma Kumaris mobile app brings wide range of features related to Meditation, News, Articles, Events, Live updates, etc.",
-        "slug": "brahma-kumaris-app",
-        "privacy": "public",
-        "sdkVersion": "26.0.0",
-        "version": "1.0.5",
-        "platforms": ["ios", "android"],
-        "orientation": "portrait",
-        "primaryColor": "#eb9e88",
-        "icon": "./assets/icons/app-icon.png",
-        "splash": {
-            "image": "./assets/images/splash.png",
-            "resizeMode": "cover",
-            "backgroundColor": "#eb9e88"
-        },
-        "notification": {
-            "icon": "./assets/icons/notification-icon.png",
-            "color": "#000000"
-        },
-        "androidStatusBar": {
-            "barStyle": "dark-content",
-            "backgroundColor": "#eb9e88"
-        },
-        "assetBundlePatterns": ["./assets/images/*", "./assets/fonts/*", "node_modules/@expo/vector-icons/fonts/Ionicons.ttf"],
-        "packagerOpts": {
-            "assetExts": ["ttf", "mp4", "mp3"]
-        },
-        "updates": {
-            "enabled": true,
-            "fallbackToCacheTimeout": 0
-        },
-        "android": {
-            "package": "com.brahmakumaris.app",
-            "versionCode": 3,
-            "config": {
-                "googleMaps": {
-                    "apiKey": "AIzaSyCQ2Ox9TWH2JtBDQ8IujJs5ahRUvKul8d8"
-                }
-            }
-        },
-        "ios": {
-            "bundleIdentifier": "com.brahmakumaris.app",
-            "supportsTablet": true
+  "expo": {
+    "name": "Brahma Kumaris",
+    "description": "Brahma Kumaris mobile app brings wide range of features related to Meditation, News, Articles, Events, Live updates, etc.",
+    "slug": "brahma-kumaris-app",
+    "privacy": "public",
+    "sdkVersion": "31.0.0",
+    "version": "1.0.6",
+    "platforms": ["ios", "android"],
+    "orientation": "portrait",
+    "primaryColor": "#eb9e88",
+    "icon": "./assets/icons/app-icon.png",
+    "splash": {
+        "image": "./assets/images/splash.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#eb9e88"
+    },
+    "notification": {
+        "icon": "./assets/icons/notification-icon.png",
+        "color": "#000000"
+    },
+    "androidStatusBar": {
+        "barStyle": "light-content",
+        "backgroundColor": "#eb9e88"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.brahmakumaris.app",
+      "versionCode": 3,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCQ2Ox9TWH2JtBDQ8IujJs5ahRUvKul8d8"
         }
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.brahmakumaris.app",
+      "supportsTablet": true
     }
+  }
 }

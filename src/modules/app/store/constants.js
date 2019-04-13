@@ -1,0 +1,10 @@
+// App
+export const APP_RESET = 'APP_RESET';
+export const SET_CONNECTION_STATUS = 'SET_CONNECTION_STATUS';
+
+// User
+export const SET_AUTH_USER = 'SET_AUTH_USER';
+
+// Notifications
+export const LOAD_NOTIFICATIONS = 'LOAD_NOTIFICATIONS';
+export const UPDATE_NOTIFICATIONS = 'UPDATE_NOTIFICATIONS';

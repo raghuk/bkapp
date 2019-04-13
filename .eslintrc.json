@@ -1,0 +1,30 @@
+{
+    "env": {
+        "node": true,
+        "browser": true,
+        "es6": true,
+        "jest": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "rules": {
+        "arrow-parens": ["error", "always"],
+        "comma-dangle": ["error", "never"],
+        "max-len": ["error", { "code": 180, "ignoreTrailingComments": true, "ignoreUrls": true, "ignoreStrings": true }],
+        "no-console": "off",
+        "no-nested-ternary": "off",
+        "no-shadow": "off",
+        "no-var": "error",
+        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+        "object-curly-newline": ["error", { "ImportDeclaration": { "multiline": true } }],
+        "object-curly-spacing": ["error", "always"],
+        "react/destructuring-assignment": ["error", "always", { "ignoreClassFields": true }],
+        "react/forbid-prop-types": ["error", { "forbid": ["any", "array"] }],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-one-expression-per-line": ["off", { "allow": "single-child" }],
+        "react/prop-types": ["error", { "ignore": ["navigation"] }]
+    }
+}
